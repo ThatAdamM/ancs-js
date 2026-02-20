@@ -197,7 +197,6 @@ class ANCSClient extends EventEmitter {
             }
             return hasNotificationSource && hasControlPoint && hasDataSource;
         } catch (e) {
-            console.error(e);
             return false;
         }
     }
@@ -226,13 +225,9 @@ class ANCSClient extends EventEmitter {
         let notificationSource, controlPoint, dataSource;
         for (const path of Object.keys(objects).filter((v) => this.#matchMacInPath(v, this.MACAddress))) {
             let char = objects[path]["org.bluez.GattCharacteristic1"];
-            console.log(path, char);
             if (!char || !char.UUID) {
-                console.log("No char or UUID found")
                 continue;
             }
-            
-            console.log(char.UUID.value.toUpperCase());
             if (char.UUID.value.toUpperCase() == "9FBF120D-6301-42D9-8C58-25E699A21DBD") {
                 this.#notificationSource.path = path;
                 notificationSource = true;
@@ -377,7 +372,6 @@ class ANCSClient extends EventEmitter {
                         * @type {ANCSNotification} The new notification content and details.
                         */
                         this.emit("created", notificationobj);
-                        console.log("notification received")
                     } else {
                         // Just edited, so send the edited event
                         /**
