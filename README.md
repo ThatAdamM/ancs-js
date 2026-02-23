@@ -25,7 +25,7 @@ let macaddress = "AB:CD:EF:01:23:45";
 let device = new ANCSClient(macaddress);
 ```
 
-> ![!TIP]
+> [!TIP]
 > You can find your iOS device's bluetooth MAC address in Settings > General > About
 
 ### API Usage
@@ -61,7 +61,7 @@ if(supports) {
 }
 ```
 
-> ![!NOTE]
+> [!NOTE]
 > When you call .startListening(), notifying will be enabled. If this is the first time your iOS device connects, you'll receive a popup you need to accept. Your device may need to be unlocked and on the home screen to receive the prompt.
 
 # Current Support
@@ -72,7 +72,8 @@ if(supports) {
 | Enable interface notifying | ✅ This starts when `.startListening()` is used |
 | Receive notification IDs | ✅ These are received after notifiying |
 | Get notification attributes | ✅ **Partially!** Requests/receives this automatically |
-| Fetch app attributes | ❎ Not currently supported.|
+| Fetch app attributes | ❎ Not currently supported. |
+| Notification fetch queue | ❎ Not currently supported. See https://github.com/ThatAdamM/ancs-js/issues/1 |
 
 # API
 
@@ -85,7 +86,7 @@ let device = new ANCSClient(macaddress)
 ```
 - `macaddress`: A string containing a MAC address, in the format `00:00:00:00:00:00`.
 
-> ![!NOTE]
+> [!NOTE]
 > You should aim to create one ANCSClient instance per device. Do not reuse this class for multiple devices!
 
 ### Properties
