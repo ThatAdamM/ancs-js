@@ -1,5 +1,25 @@
 {
+  "name": "ancs-js",
+  "displayName": "ANCS JS",
+  "description": "Apple Notification Centre Service integration using the Bluez DBus for NodeJS",
+  "author": "Adam Murray",
+  "main": "index.js",
   "dependencies": {
     "dbus-next": "^0.10.2"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "license": "MIT",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThatAdamM/ancs-js.git"
+  },
+  "keywords": ["ANCS", "notifications", "IOS"],
+  "homepage": "https://github.com/ThatAdamM/ancs-js",
+  "bugs": {
+    "url": "https://github.com/ThatAdamM/ancs-js/issues"
   }
+
 }
