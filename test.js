@@ -2,6 +2,7 @@ console.log("Beginning tests. See the README for more info on running these succ
 console.log("Testing for device ", process.env.ADDRESS);
 let { ANCSClient, ANCSNotification } = require("./");
 let client = new ANCSClient(process.env.ADDRESS);
+
 console.log("[+] MAC Address Valid");
 client.on("start", (mac) => {
     console.log("[+] Started Listening to", mac);
