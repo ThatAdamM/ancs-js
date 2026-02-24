@@ -1,5 +1,5 @@
 {
-  "name": "ancs-js",
+  "name": "ancsjs",
   "displayName": "ANCS JS",
   "description": "Apple Notification Centre Service integration using the Bluez DBus for NodeJS",
   "author": "Adam Murray",

@@ -16,11 +16,11 @@ This library takes advantage of that to provide a programmable interface to get 
 
 Install the library from NPM:
 ```
-npm install ancs-js
+npm install ancsjs
 ```
 And use it in your project like so:
 ```js
-let {ANCSClient} = require("ancs-js");
+let {ANCSClient} = require("ancsjs");
 let macaddress = "AB:CD:EF:01:23:45";
 let device = new ANCSClient(macaddress);
 ```
