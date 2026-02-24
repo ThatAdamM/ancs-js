@@ -256,6 +256,23 @@ class ANCSClient extends EventEmitter {
         const obj = await bus.getProxyObject("org.bluez", this.#controlPoint.path);
         const controlChar = obj.getInterface("org.bluez.GattCharacteristic1");
 
+        // Make a queue for receiving notifications at the start
+        let queue = [];
+        let isDequeuing;
+        // Shockingly nesting functions, don't mind me
+        async function dequeue() {
+            isDequeuing = true;
+            while(queue.length > 0) {
+                let next = queue.splice(0, 1);
+                await controlChar.WriteValue(
+                    // 00 (AppID) 01FFFF (title) 02FFFF (subtitle) 03FFFF (body) 05 (date)
+                    // TODO: Support for actions, max sizes
+                    Buffer.from("00" + next + "0001FFFF02FFFF03FFFF05", "hex"), {}
+                );
+            }
+            isDequeuing = false;
+        }
+
         // Set our listener.
         this.#notificationSource.listener = notifProps.on('PropertiesChanged', async (iface, changed) => {
             // If a change is detected
@@ -273,11 +290,8 @@ class ANCSClient extends EventEmitter {
                     delete (this.notifications[data.substring(data.length - 8)]);
                 } else {
                     // Notification has been created or edited. 
-                    await controlChar.WriteValue(
-                        // 00 (AppID) 01FFFF (title) 02FFFF (subtitle) 03FFFF (body) 05 (date)
-                        // TODO: Support for actions, max sizes
-                        Buffer.from("00" + data.substring(data.length - 8) + "0001FFFF02FFFF03FFFF05", "hex"), {}
-                    );
+                    queue.push(data.substring(data.length - 8));
+                    if(!isDequeuing) dequeue();
                 }
             }
         });
