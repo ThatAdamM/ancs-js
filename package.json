@@ -11,7 +11,7 @@
     "test": "node test.js"
   },
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/ThatAdamM/ancs-js.git"
