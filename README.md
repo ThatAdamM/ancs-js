@@ -73,7 +73,7 @@ if(supports) {
 | Receive notification IDs | ✅ These are received after notifiying |
 | Get notification attributes | ✅ **Partially!** Requests/receives this automatically |
 | Fetch app attributes | ❎ Not currently supported. |
-| Notification fetch queue | ❎ Not currently supported. See https://github.com/ThatAdamM/ancs-js/issues/1 |
+| Notification fetch queue | ✅ Now gets notification attributes one-at-a-time |
 
 # API
 
